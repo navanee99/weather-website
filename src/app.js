@@ -48,7 +48,7 @@ app.get('/weather',(req,res)=>
         )
 
     }
-    forecast(11.446664,77.694335,(error,data)=>
+    forecast(req.query.address,(error,data)=>
 {
     if (error) {
         return res.send({error})

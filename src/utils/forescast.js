@@ -1,8 +1,8 @@
 const request=require('postman-request')
 
-const forecast=(latitude,longtitude,callback)=>
+const forecast=(address,callback)=>
 {
-    const url='http://api.weatherstack.com/current?access_key=14de53b6fdeec8a481d4982d0a699b4b&query='+latitude+','+longtitude+'&units=f'
+    const url='http://api.weatherstack.com/current?access_key=14de53b6fdeec8a481d4982d0a699b4b&query='+address+'&units=f'
     request({url,json:true},(error,{body})=>
     {
         if(error)
@@ -14,8 +14,8 @@ const forecast=(latitude,longtitude,callback)=>
             callback('unable to find location',undefined)
         }
         else{
-            callback(undefined,"The temperature is "+body.current.temperature +" degree farenheit"
-            +" It feels like "+body.current.feelslike+" The humidity is "+body.current.humidity+"%")
+            callback(undefined,body.current.weather_descriptions[0]+" The temperature is "+body.current.temperature +" Degree Farenheit"
+            +" The humidity is "+body.current.humidity+"%")
         }
         
     
